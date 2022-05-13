@@ -18,6 +18,32 @@ Mtmchkin::Mtmchkin(const char* playerName, const Card* cardsArray, int numOfCard
     }
 }
 
+Mtmchkin::Mtmchkin(const Mtmchkin& other) :
+    m_player(other.m_player),
+    m_deck(new Card[other.m_deckSize]),
+    m_deckSize(other.m_deckSize),
+    m_cardIndex(other.m_cardIndex),
+    m_gameStatus(other.m_gameStatus) {
+    for (int i = 0; i < this->m_deckSize; i++) {
+        this->m_deck[i] = other.m_deck[i];
+    }
+}
+
+Mtmchkin& Mtmchkin::operator=(const Mtmchkin& other) {
+    Card *newDeck = new Card[other.m_deckSize];
+    for (int i = 0; i < other.m_deckSize; i++) {
+        newDeck[i] = other.m_deck[i];
+    }
+    this->m_deckSize = other.m_deckSize;
+    delete[] this->m_deck;
+    this->m_deck = newDeck;
+
+    this->m_player = other.m_player;
+    this->m_cardIndex = other.m_cardIndex;
+    this->m_gameStatus = other.m_gameStatus;
+    return *this;
+}
+
 GameStatus Mtmchkin::getGameStatus() const {
     return this->m_gameStatus;
 }
@@ -50,4 +76,8 @@ void Mtmchkin::playNextCard() {
 
 bool Mtmchkin::isOver() const {
     return (this->m_gameStatus == GameStatus::Loss || this->m_gameStatus == GameStatus::Win);
+}
+
+Mtmchkin::~Mtmchkin() {
+    delete[] this->m_deck;
 }

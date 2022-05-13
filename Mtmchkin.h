@@ -58,7 +58,9 @@ public:
      */
     GameStatus getGameStatus() const;
 
-    //TODO: complete the Mtmchkin class.
+    ~Mtmchkin();
+    Mtmchkin(const Mtmchkin& other);
+    Mtmchkin& operator=(const Mtmchkin& other);
 
 private:
     void advanceCardIndex();
@@ -66,7 +68,7 @@ private:
 
     Player m_player;
     Card* m_deck;
-    const int m_deckSize;
+    int m_deckSize;
     int m_cardIndex;
     GameStatus m_gameStatus;
 };
