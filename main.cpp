@@ -17,9 +17,12 @@ int main() {
     cards[6] = Card(CardType::Battle,stats3);
     Mtmchkin game("Ariel Strugo", cards, deckSize);
 
-    if (game.getGameStatus() == GameStatus::Win){
-        std::cout << "The player defeated all monsters and achieved eternal glory!";
+    while (!game.isOver()) {
+
+        game.playNextCard();
     }
+
+    std::cout << static_cast<int>(game.getGameStatus()) << std::endl;
 
 
     return 0;
