@@ -5,6 +5,7 @@
 #ifndef EX2_GAME_H
 #define EX2_GAME_H
 #include "Card.h"
+#include "Player.h"
 #include <iostream>
 
 /*
@@ -60,8 +61,14 @@ public:
     //TODO: complete the Mtmchkin class.
 
 private:
-    //TODO: complete the Mtmchkin class.
+    void advanceCardIndex();
+    void updateGameStaus();
 
+    Player m_player;
+    Card* m_deck;
+    const int m_deckSize;
+    int m_cardIndex;
+    GameStatus m_gameStatus;
 };
 
 

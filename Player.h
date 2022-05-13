@@ -109,9 +109,9 @@ public:
     ~Player() = default;
     Player& operator=(const Player& other) = default;
 
+    static const int maxLevel = 10;
 
 private:
-    static const int maxLevel = 10;
     static const int startingLevel = 1;
     static const int startingCoins = 0;
 
