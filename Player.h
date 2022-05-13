@@ -19,7 +19,7 @@ public:
      * @return
      *      A new instance of Player.
     */
-    Player(std::string& name, int hp = 100, int force = 5);
+    Player(const std::string& name, const int hp = 100, const int force = 5);
 
 
     /*
@@ -52,7 +52,7 @@ public:
      * @return
      *      void
     */
-    void buff(int buffPoints);
+    void buff(const int buffPoints);
 
     /*
      * Increase player current hp
@@ -60,7 +60,7 @@ public:
      * @return
      *      void
     */
-    void heal(int healPoints);
+    void heal(const int healPoints);
 
     /*
      * Decrease player current hp
@@ -68,7 +68,7 @@ public:
      * @return
      *      void
     */
-    void damage(int damagePoints);
+    void damage(const int damagePoints);
 
     /*
      * Checks if Player's life reached zero
@@ -84,7 +84,7 @@ public:
      * @return
      *      void
     */
-    void addCoins(int coinsToAdd);
+    void addCoins(const int coinsToAdd);
 
     /*
      * Decrease player coins
@@ -92,7 +92,7 @@ public:
      * @return
      *      bool - True if payment was made
     */
-    bool pay(int coinsToPay);
+    bool pay(const int coinsToPay);
 
     /*
      * Returns player overall strength
