@@ -111,15 +111,16 @@ public:
 
 
 private:
-    std::string m_name;
-    int m_level;
-    int m_force;
-    int m_maxHp;
-    int m_HP;
-    int m_coins;
-
     static const int maxLevel = 10;
+    static const int startingLevel = 1;
+    static const int startingCoins = 0;
 
+    std::string m_name;
+    int m_maxHp;
+    int m_force;
+    int m_HP;
+    int m_level;
+    int m_coins;
 };
 
 
