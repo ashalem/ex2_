@@ -59,7 +59,7 @@ static void treasureEncounter(Player& player, const CardStats& stats) {
   //Plays an encounter of the player with a treasure card.
 
     assert(player && stats);
-    player.addCoins(stats.cost);
+    player.addCoins(stats.loot);
 }
 
 void Card::printInfo() const{

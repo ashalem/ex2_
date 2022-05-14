@@ -49,7 +49,7 @@ GameStatus Mtmchkin::getGameStatus() const {
 }
 
 void Mtmchkin::advanceCardIndex() {
-    if (this->m_cardIndex == this->m_deckSize) {
+    if (this->m_cardIndex == this->m_deckSize-1) {
         this->m_cardIndex = 0;
     } else {
         this->m_cardIndex++;
