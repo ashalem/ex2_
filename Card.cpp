@@ -20,7 +20,6 @@ Card::Card(CardType type, const CardStats& stats){
 static void battleEncounter(Player& player, const CardStats& stats) {
 //Plays an encounter of the player with a battle card.
 
-  assert(player && stats);
   bool isWonBattle = player.getAttackStrength() >= stats.force;
   printBattleResult(isWonBattle);
 
@@ -37,7 +36,6 @@ static void battleEncounter(Player& player, const CardStats& stats) {
 static void buffEncounter(Player& player, const CardStats& stats) {
 //Plays an encounter of the player with a buff card.
 
-  assert(player && stats);
   bool isEnoughMoney = player.pay(stats.cost);
   if(isEnoughMoney){
       player.buff(stats.buff);
@@ -47,7 +45,6 @@ static void buffEncounter(Player& player, const CardStats& stats) {
 static void healEncounter(Player& player, const CardStats& stats) {
   //Plays an encounter of the player with a heal card.
 
-    assert(player && stats);
     bool isEnoughMoney = player.pay(stats.cost);
 
     if(isEnoughMoney){
@@ -58,14 +55,12 @@ static void healEncounter(Player& player, const CardStats& stats) {
 static void treasureEncounter(Player& player, const CardStats& stats) {
   //Plays an encounter of the player with a treasure card.
 
-    assert(player && stats);
     player.addCoins(stats.loot);
 }
 
 void Card::printInfo() const{
 //Plays an encounter of the player with a random card.
   
-  assert(player);
   switch(this->m_effect){
   
     case CardType::Battle:
@@ -91,7 +86,6 @@ void Card::printInfo() const{
 void Card::applyEncounter(Player& player) const{
 //Plays an encounter of the player with a random card.
   
-  assert(player);
   switch(this->m_effect){
   
     case CardType::Battle:
