@@ -8,6 +8,9 @@
 #include <stdbool.h>
 #include "utilities.h"
 
+#define DEFAULT_MAX_HP (100)
+#define DEFAULT_FORCE (5)
+
 class Player {
 public:
     /*
@@ -19,7 +22,7 @@ public:
      * @return
      *      A new instance of Player.
     */
-    Player(const std::string& name, const int hp = 100, const int force = 5);
+    Player(const std::string& name, const int hp = DEFAULT_MAX_HP, const int force = DEFAULT_FORCE);
 
 
     /*
