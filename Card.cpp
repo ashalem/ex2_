@@ -9,11 +9,10 @@
 using std::cout;
 using std::endl;
 
-Card::Card(CardType type, const CardStats &stats)
-{
-    this->m_effect = type;
-    this->m_stats = stats;
-}
+Card::Card(CardType type, const CardStats &stats) :
+    m_effect(type),
+    m_stats(stats)
+{ }
 
 static void battleEncounter(Player &player, const CardStats &cardStats)
 {

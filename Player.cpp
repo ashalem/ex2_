@@ -32,15 +32,11 @@ int Player::getLevel() const {
 }
 
 void Player::buff(const int buffPoints) {
-    //assert(buffPoints >= 0);
+    //assert(buffPoints > 0);
     if (buffPoints <= 0) {
         return;
     }
     this->m_force += buffPoints;
-    if (this->m_force < 0) {
-        // In case we got a debuf, force should still not be a negative
-        this->m_force = 0;
-    }
 }
 
 void Player::heal(const int healPoints) {
