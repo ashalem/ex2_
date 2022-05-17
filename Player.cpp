@@ -32,7 +32,7 @@ int Player::getLevel() const {
 }
 
 void Player::buff(const int buffPoints) {
-//    assert(buffPoints > 0);
+    //assert(buffPoints >= 0);
     if (buffPoints <= 0) {
         return;
     }

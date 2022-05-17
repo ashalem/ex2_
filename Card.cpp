@@ -9,102 +9,78 @@
 using std::cout;
 using std::endl;
 
-Card::Card(CardType type, const CardStats& stats){
-//C'tor of Card class.
-
-  this->m_effect = type;
-  this ->m_stats = stats;
-  
+Card::Card(CardType type, const CardStats &stats)
+{
+    this->m_effect = type;
+    this->m_stats = stats;
 }
 
-static void battleEncounter(Player& player, const CardStats& stats) {
-//Plays an encounter of the player with a battle card.
+static void battleEncounter(Player &player, const CardStats &cardStats)
+{
+    bool hasWonBattle = (player.getAttackStrength() >= cardStats.force);
+    printBattleResult(hasWonBattle);
 
-  bool isWonBattle = player.getAttackStrength() >= stats.force;
-  printBattleResult(isWonBattle);
-
-  if(isWonBattle){
-      player.levelUp();
-      player.addCoins(stats.loot);
-  }
-
-  else{
-      player.damage(stats.hpLossOnDefeat);
-  }
-}
-
-static void buffEncounter(Player& player, const CardStats& stats) {
-//Plays an encounter of the player with a buff card.
-
-  bool isEnoughMoney = player.pay(stats.cost);
-  if(isEnoughMoney){
-      player.buff(stats.buff);
-  }
-}
-
-static void healEncounter(Player& player, const CardStats& stats) {
-  //Plays an encounter of the player with a heal card.
-
-    bool isEnoughMoney = player.pay(stats.cost);
-
-    if(isEnoughMoney){
-        player.heal(stats.heal);
+    if (hasWonBattle) {
+        player.levelUp();
+        player.addCoins(cardStats.loot);
+    } else {
+        player.damage(cardStats.hpLossOnDefeat);
     }
 }
 
-static void treasureEncounter(Player& player, const CardStats& stats) {
-  //Plays an encounter of the player with a treasure card.
-
-    player.addCoins(stats.loot);
+static void buffEncounter(Player &player, const CardStats &cardStats)
+{
+    if (player.pay(cardStats.cost)) {
+        player.buff(cardStats.buff);
+    }
 }
 
-void Card::printInfo() const{
-//Plays an encounter of the player with a random card.
-  
-  switch(this->m_effect){
-  
+static void healEncounter(Player &player, const CardStats &cardStats)
+{
+    if (player.pay(cardStats.cost)) {
+        player.heal(cardStats.heal);
+    }
+}
+
+static void treasureEncounter(Player &player, const CardStats &cardStats)
+{
+    player.addCoins(cardStats.loot);
+}
+
+void Card::printInfo() const
+{
+    switch (this->m_effect) {
     case CardType::Battle:
-      printBattleCardInfo(this->m_stats);
-      break;
-
-       
+        printBattleCardInfo(this->m_stats);
+        break;
     case CardType::Buff:
-      printBuffCardInfo(this->m_stats);
-      break;
-      
+        printBuffCardInfo(this->m_stats);
+        break;
     case CardType::Heal:
-      printHealCardInfo(this->m_stats);
-      break;
-      
+        printHealCardInfo(this->m_stats);
+        break;
     case CardType::Treasure:
-      printTreasureCardInfo(this->m_stats);
-      break;
-
-  }
+        printTreasureCardInfo(this->m_stats);
+        break;
+    default:
+        break;
+    }
 }
 
-void Card::applyEncounter(Player& player) const{
-//Plays an encounter of the player with a random card.
-  
-  switch(this->m_effect){
-  
+void Card::applyEncounter(Player &player) const
+{
+    switch (this->m_effect) {
     case CardType::Battle:
-      battleEncounter(player, this->m_stats);
-      break;
-
-       
+        battleEncounter(player, this->m_stats);
+        break;
     case CardType::Buff:
-      buffEncounter(player, this->m_stats);
-      break;
-      
+        buffEncounter(player, this->m_stats);
+        break;
     case CardType::Heal:
-      healEncounter(player, this->m_stats);
-      break;
-      
+        healEncounter(player, this->m_stats);
+        break;
     case CardType::Treasure:
-      treasureEncounter(player, this->m_stats);
-      break;
-
-  }
+        treasureEncounter(player, this->m_stats);
+        break;
+    }
 }
-
